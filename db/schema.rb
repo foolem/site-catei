@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20180823010709) do
   create_table "registrations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "grr"
+    t.string "email"
     t.string "cpf"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

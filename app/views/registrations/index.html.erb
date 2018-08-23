@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Registrations</h1>
-
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Grr</th>
+      <th>Email</th>
       <th>Cpf</th>
       <th colspan="3"></th>
     </tr>
@@ -17,6 +17,7 @@
       <tr>
         <td><%= registration.name %></td>
         <td><%= registration.grr %></td>
+        <td><%= registration.email %></td>
         <td><%= registration.cpf %></td>
         <td><%= link_to 'Show', registration %></td>
         <td><%= link_to 'Edit', edit_registration_path(registration) %></td>

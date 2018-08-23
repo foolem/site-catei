@@ -3,6 +3,7 @@ class CreateRegistrations < ActiveRecord::Migration[5.1]
     create_table :registrations do |t|
       t.string :name
       t.string :grr
+      t.string :email
       t.string :cpf
 
       t.timestamps
