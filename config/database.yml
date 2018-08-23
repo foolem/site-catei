@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  host: localhost
+  username: foolem
+  password: admin
+
+development:
+  <<: *default
+  database: db/site_catei_dev
+
+test:
+  <<: *default
+  database: db/site_catei_test
+
+production:
+  <<: *default
+  database: db/site_catei_production
