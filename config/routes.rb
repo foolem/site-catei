@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get "/404" => "errors#not_found"
+  get "/500" => "errors#exception"
+
   namespace :api do
     namespace :v1 do
       resources :registrations do
@@ -8,7 +11,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
 
   resources :registrations do
     get 'check_in/:id', to: 'registrations#check_in'

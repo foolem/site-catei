@@ -12,34 +12,36 @@
 
 ActiveRecord::Schema.define(version: 20180831000103) do
 
-  create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "courses", force: :cascade do |t|
     t.string "name"
     t.string "speaker"
     t.integer "vacancies"
-    t.integer "duration_in_minutes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "courses_registrations", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "courses_registrations", id: false, force: :cascade do |t|
     t.bigint "registration_id", null: false
     t.bigint "course_id", null: false
   end
 
-  create_table "lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lectures", force: :cascade do |t|
     t.string "name"
-    t.integer "duration_in_minutes"
     t.string "speaker"
+    t.boolean "turn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "lectures_registrations", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lectures_registrations", id: false, force: :cascade do |t|
     t.bigint "registration_id", null: false
     t.bigint "lecture_id", null: false
   end
 
-  create_table "registrations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "registrations", force: :cascade do |t|
     t.string "name"
     t.string "grr"
     t.string "email"

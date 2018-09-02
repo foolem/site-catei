@@ -4,7 +4,6 @@ class CreateCourses < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :speaker
       t.integer :vacancies
-      t.integer :duration_in_minutes
 
       t.timestamps
     end
