@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'Staff', at: 'api/v1/auth'
 
   get "/404" => "errors#not_found"
   get "/500" => "errors#exception"
@@ -11,8 +12,10 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  resources :registrations do
-    get 'check_in/:id', to: 'registrations#check_in'
+  scope(path_names: { new: 'novo', edit: 'editar' }) do
+    resources :registrations, path: 'participantes'
   end
+  get 'cursos', to: 'registrations#registration_courses', as: 'registration_courses'
+  post 'participant_search', to: 'registrations#participant_search'
+  post 'add_course_to_participant', to: 'registrations#add_course_to_participant'
 end

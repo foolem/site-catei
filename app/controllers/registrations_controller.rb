@@ -1,5 +1,5 @@
 class RegistrationsController < ApplicationController
-  before_action :set_registration, only: [:show, :edit, :update, :destroy]
+  before_action :set_registration, only: [:show, :edit, :update, :destroy, :add_course_to_participant]
 
   # GET /registrations
   # GET /registrations.json
@@ -28,7 +28,8 @@ class RegistrationsController < ApplicationController
 
     respond_to do |format|
       if @registration.save
-        format.html { redirect_to @registration, notice: 'Registration was successfully created.' }
+        flash[:success] = "Cadastrado realizado com sucesso! Foi enviado um email para #{@registration.email} com seu QRcode."
+        format.html { redirect_to @registration }
         format.json { render :show, status: :created, location: @registration }
       else
         format.html { render :new }
@@ -61,6 +62,35 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def registration_courses
+  end
+
+  def participant_search
+    @participant = Registration.where(email: params[:email]).first
+    if !@participant.blank?
+      render 'form_courses', participant: @participant
+    else
+      flash[:error] = "Participante não encontrado! Você já se cadastrou na Semana Acadêmica?"
+      redirect_to registrations_path
+    end
+  end
+
+  def add_course_to_participant
+    course = Course.find(params[:registration][:course])
+    if course.vacancies <= course.registrations.length
+      flash[:error] = "Desculpe, mas o curso não possui mais vagas."
+      redirect_to registrations_path
+    elsif @registration.courses.include?(course)
+      flash[:error] = "Você já está inscrito neste curso."
+      redirect_to registrations_path
+    else
+      @registration.courses << Course.find(params[:registration][:course])
+      @registration.save
+      flash[:success] = "Curso cadastrado com sucesso!"
+      redirect_to registrations_path
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
@@ -69,6 +99,6 @@ class RegistrationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_params
-      params.require(:registration).permit(:name, :grr, :email, :cpf)
+      params.require(:registration).permit(:name, :grr, :email, :cpf, :turn)
     end
 end

@@ -1,28 +1,13 @@
-<p id="notice"><%= notice %></p>
+<!-- <h3 class="text-center">Por favor, escolha uma opção para prosseguir:</h3> -->
+<div class="pb-100">
+  <h1 class="text-center">Cadastro</h1>
+  <div class="actions">
+    <div class="action">
+      <%= link_to "Semana Acadêmica", new_registration_path, class: "hvr-underline-from-left" %>
+    </div>
+    <div class="action">
+      <%= link_to "Minicursos", registration_courses_path, class: "hvr-underline-from-left" %>
+    </div>
+  </div>
 
-<h1>Registrations</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Grr</th>
-      <th>Email</th>
-      <th>Cpf</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @registrations.each do |registration| %>
-      <tr>
-        <td><%= registration.name %></td>
-        <td><%= registration.grr %></td>
-        <td><%= registration.email %></td>
-        <td><%= registration.cpf %></td>
-        <td><%= link_to 'Show', registration %></td>
-        <td><%= link_to 'Edit', edit_registration_path(registration) %></td>
-        <td><%= link_to 'Destroy', registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+</div>

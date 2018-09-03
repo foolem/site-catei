@@ -6,9 +6,29 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://unpkg.com/feather-icons"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="container-full" class="container-full">
+      <% flash.each do |key, value| %>
+        <div id="alert" class="alert alert-<%= key %>"> <span> <%= value %> </span> <i id="close" data-feather="x" class="close"></i> </div>
+      <% end %>
+      <div class="logo-satads">
+        <%= image_tag("satads_logo_escrito.png", class: "logo-satads-img") %>
+      </div>
+      <div class="container-content">
+
+        <%= yield %>
+      </div>
+    </div>
+    <script>
+      feather.replace()
+    </script>
+    <script type="text/javascript">
+      document.getElementById("close").addEventListener("click", function(){
+          document.getElementById("container-full").removeChild(document.getElementById("alert"));
+      });
+    </script>
   </body>
 </html>

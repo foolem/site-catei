@@ -21,9 +21,12 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # QRCODE Encoder
 gem 'rqrcode'
-
-gem 'pry'
-
+# Better rails c
+gem 'awesome_print'
+# Devise Token Auth
+gem 'devise_token_auth'
+# Cross requests
+gem 'rack-cors', :require => 'rack/cors'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

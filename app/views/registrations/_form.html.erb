@@ -1,37 +1,48 @@
 <%= form_with(model: registration, local: true) do |form| %>
+<div class="form">
   <% if registration.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(registration.errors.count, "error") %> prohibited this registration from being saved:</h2>
+  <div id="error_explanation">
+    <h2><%= pluralize(registration.errors.count, "error") %> prohibited this registration from being saved:</h2>
 
-      <ul>
+    <ul>
       <% registration.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :registration_name %>
+    <label for="registration_name">Nome</label>
+    <%= form.text_field :name, id: :registration_name, placeholder: 'Nome completo', class: 'text_area' %>
   </div>
 
   <div class="field">
-    <%= form.label :grr %>
-    <%= form.text_field :grr, id: :registration_grr %>
+    <label for="registration_email">Email</label>
+    <%= form.text_field :email, id: :registration_email, placeholder: 'Seu email', class: 'text_area' %>
   </div>
 
   <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :registration_email %>
+    <label for="registration_grr">GRR</label>
+    <%= form.text_field :grr, id: :registration_grr, placeholder: 'GRRXXXXXXXX', class: 'text_area' %>
   </div>
 
   <div class="field">
-    <%= form.label :cpf %>
-    <%= form.text_field :cpf, id: :registration_cpf %>
+    <label for="registration_cpf">CPF</label>
+    <%= form.text_field :cpf, id: :registration_cpf, placeholder: 'XXX.XXX.XXX-XX', class: 'text_area' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="field">
+    <label for="registration_turn">Turno</label>
+    <%= form.select :turn, options_for_select(turns, ""), {}, class: 'select' %>
   </div>
+  
+  <div class="actions p-0">
+    <%= form.submit "Enviar", class: "submit" %>
+  </div>
+
+</div>
 <% end %>
+<script type="text/javascript">
+  document.getElementById("container-full").removeChild(document.getElementById("alert"));
+</script>

@@ -13,3 +13,221 @@
  *= require_tree .
  *= require_self
  */
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+html, body, * {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+}
+.container-full {rgb(58, 55, 224)
+  width: 100%;
+  max-height: 100%;
+  background: linear-gradient(-10deg, rgb(228, 228, 228) 0%,rgb(228, 228, 228) 45%, rgb(58, 55, 224) 45%, rgb(104, 22, 186) 100%);
+  padding-bottom: 200px;
+}
+.container-content {
+  display: block;
+  margin: 0 auto;
+  padding: 0px;
+  width: 70%;
+  height: 100%;
+  background-color: white;
+}
+.logo-satads {
+  padding: 50px;
+}
+.logo-satads-img {
+  display: block;
+  margin: 0 auto;
+  max-width: 70%;
+  max-height: 200px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0px;
+}
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 50px;
+}
+
+.form {
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+  text-align: left;
+}
+.select {
+  padding: 5px 20px;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-radius: 0;
+  width: 150px;
+}
+.bigger-select {
+  width: 70%;
+}
+.text_area {
+  flex-direction: column;
+  resize: auto;
+  cursor: text;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-color: rgb(214, 214, 214);
+  padding: 10px;
+  width: 100%;
+  height: auto;
+}
+.text_area:focus {
+  border-color: rgb(58, 55, 224);
+}
+.submit {
+  padding: 20px;
+  width: 200px;
+  font-size: 1.5rem;
+  background-color: rgb(58, 55, 224);
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  float: right;
+}
+.submit:hover {
+  background-color: rgb(28, 24, 213);
+}
+.submit:hover {
+  cursor: pointer;
+}
+.form label {
+  font-size: 1.5rem;
+}
+.field {
+  padding: 20px;
+}
+.p-0 {
+  padding: 30px;
+}
+.pb-50 {
+  padding-bottom: 50px;
+}
+.pb-100 {
+  padding-bottom: 100px;
+}
+
+.alert {
+  width: 80%;
+  height: 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 10px;
+  color: white;
+  line-height: 1.8rem;
+  font-weight: bold;
+}
+.alert-error {
+  background-color: rgb(255, 120, 120);
+}
+.alert-success {
+  background-color: rgb(99, 245, 157);
+}
+.close {
+  font-weight: bold;
+  color: white;
+  padding-left: 50px;
+  width: 30px;
+  height: 30px;
+}
+.close:hover {
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+}
+/* Text rules */
+.text-center {
+  text-align: center;
+}
+h1 {
+  font-size: 4rem;
+  padding: 60px 0 0 40px;
+  color: rgb(58, 55, 224);
+}
+h3 {
+  font-size: 1rem;
+  padding: 20px 0;
+  color: rgb(47, 47, 47);
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+.white {
+  color: white;
+}
+.action a {
+  font-size: 2rem;
+  line-height: 3rem;
+  color: rgb(47, 47, 47);
+  text-align: center;
+  text-transform: uppercase;
+}
+.action a:hover {
+  /* color: rgb(112, 112, 112); */
+  cursor: pointer;
+}
+
+/* Animations */
+.hvr-underline-from-left {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    position: relative;
+    overflow: hidden
+}
+
+.hvr-underline-from-left:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    background: rgb(58, 55, 224);
+    height: 2px;
+    -webkit-transition-property: right;
+    transition-property: right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out
+}
+
+.hvr-underline-from-left:hover:before,
+.hvr-underline-from-left:focus:before,
+.hvr-underline-from-left:active:before {
+    right: 0
+}
+svg {
+  color: #000;
+}
+svg:hover {
+  color: rgb(58, 55, 224);
+}
+.bigger-icon {
+  padding: 20px;
+  width: 50px;
+  height: 50px;
+}
