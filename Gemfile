@@ -20,7 +20,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # QRCODE Encoder
-gem 'rqrcode'
+gem 'rqrcode_png'
 # Better rails c
 gem 'awesome_print'
 # Devise Token Auth

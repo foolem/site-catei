@@ -54,14 +54,18 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  config.action_mailer.default_url_options = { host: 'https://satads.heroku.com'}
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+
   config.action_mailer.smtp_settings = {
-      :authentication => :plain,
-      :address => "smtp.mailgun.org",
-      :port => 587,
-      :domain => "sandbox63f7e98983984d95a7c8469e674d02f1.mailgun.org",
-      :user_name => "postmaster@sandbox63f7e98983984d95a7c8469e674d02f1.mailgun.org",
-      :password => "f80e74d3470609c73935dfa5a97c338b-f45b080f-fb0cc49b"
-  }
+    :enable_starttls_auto => true,
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :authentication => :plain,
+    :domain => 'satads.heroku.com',
+    :user_name => 'emaildocatei@gmail.com',
+    :password => 'integracao2018'
+}
 
 end
