@@ -17,18 +17,29 @@ class RegistrationsController < ApplicationController
     @registration = Registration.new
   end
 
-  # GET /registrations/1/edit
-  def edit
-  end
-
   # POST /registrations
   # POST /registrations.json
   def create
+    if registration_params[:name].blank?
+      flash[:error] = "O nome é um campo obgrigatório!"
+      redirect_to new_registration_path
+      return
+    elsif registration_params[:email].blank?
+      flash[:error] = "O email é um campo obgrigatório!"
+      redirect_to new_registration_path
+      return
+    elsif registration_params[:cpf].blank?
+      flash[:error] = "O CPF é um campo obgrigatório"
+      redirect_to new_registration_path
+      return
+    end
     @registration = Registration.new(registration_params)
+
+    RegistrationMailer.send_qrcode(@registration).deliver
 
     respond_to do |format|
       if @registration.save
-        flash[:success] = "Cadastrado realizado com sucesso! Foi enviado um email para #{@registration.email} com seu QRcode."
+        flash[:success] = "Cadastrado realizado com sucesso!"
         format.html { redirect_to @registration }
         format.json { render :show, status: :created, location: @registration }
       else
@@ -38,40 +49,22 @@ class RegistrationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /registrations/1
-  # PATCH/PUT /registrations/1.json
-  def update
-    respond_to do |format|
-      if @registration.update(registration_params)
-        format.html { redirect_to @registration, notice: 'Registration was successfully updated.' }
-        format.json { render :show, status: :ok, location: @registration }
-      else
-        format.html { render :edit }
-        format.json { render json: @registration.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /registrations/1
-  # DELETE /registrations/1.json
-  def destroy
-    @registration.destroy
-    respond_to do |format|
-      format.html { redirect_to registrations_url, notice: 'Registration was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   def registration_courses
   end
 
   def participant_search
+    if params[:email].blank?
+      flash[:error] = "Email não pode estar em branco!"
+      redirect_to registration_courses_path
+      return
+    end
     @participant = Registration.where(email: params[:email]).first
     if !@participant.blank?
       render 'form_courses', participant: @participant
+      return
     else
       flash[:error] = "Participante não encontrado! Você já se cadastrou na Semana Acadêmica?"
-      redirect_to registrations_path
+      redirect_to registration_courses_path
     end
   end
 
@@ -80,13 +73,17 @@ class RegistrationsController < ApplicationController
     if course.vacancies <= course.registrations.length
       flash[:error] = "Desculpe, mas o curso não possui mais vagas."
       redirect_to registrations_path
+      return
     elsif @registration.courses.include?(course)
       flash[:error] = "Você já está inscrito neste curso."
       redirect_to registrations_path
+      return
     else
-      @registration.courses << Course.find(params[:registration][:course])
+      @registration.courses << course
       @registration.save
-      flash[:success] = "Curso cadastrado com sucesso!"
+      course.vacancies -= 1
+      course.save
+      flash[:success] = "Inscrito no curso com sucesso!"
       redirect_to registrations_path
     end
   end

@@ -19,7 +19,7 @@ html, body, * {
   padding: 0;
   font-family: 'Raleway', sans-serif;
 }
-.container-full {rgb(58, 55, 224)
+.container-full {
   width: 100%;
   max-height: 100%;
   background: linear-gradient(-10deg, rgb(228, 228, 228) 0%,rgb(228, 228, 228) 45%, rgb(58, 55, 224) 45%, rgb(104, 22, 186) 100%);
@@ -71,7 +71,8 @@ html, body, * {
   width: 150px;
 }
 .bigger-select {
-  width: 70%;
+  width: 100%;
+  height: 50px;
 }
 .text_area {
   flex-direction: column;
@@ -112,6 +113,11 @@ html, body, * {
 .field {
   padding: 20px;
 }
+.field-input {
+  padding: 15px;
+  padding-left: 22px;
+  background-color: #f2f1f0;
+}
 .p-0 {
   padding: 30px;
 }
@@ -120,6 +126,13 @@ html, body, * {
 }
 .pb-100 {
   padding-bottom: 100px;
+}
+.box-shadow {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.box-shadow:hover {
+  box-shadow:0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
 }
 
 .alert {
@@ -156,10 +169,18 @@ html, body, * {
 .text-center {
   text-align: center;
 }
+.text-strong {
+  color: rgb(58, 55, 224);
+}
 h1 {
   font-size: 4rem;
   padding: 60px 0 0 40px;
   color: rgb(58, 55, 224);
+}
+h2 {
+  font-size: 2rem;
+  padding: 20px 0 0 20px;
+  color: rgb(30, 30, 30);
 }
 h3 {
   font-size: 1rem;
@@ -221,13 +242,155 @@ a:hover {
     right: 0
 }
 svg {
-  color: #000;
+  color: rgb(58, 55, 224);
 }
 svg:hover {
-  color: rgb(58, 55, 224);
+  color: rgb(34, 32, 172);
 }
 .bigger-icon {
   padding: 20px;
   width: 50px;
   height: 50px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .container-content {
+    display: block;
+    margin: 0 auto;
+    padding: 0px;
+    width: 90%;
+    height: 100%;
+    background-color: white;
+  }
+  h1 {
+    font-size: 5rem;
+    padding: 60px 0 0 40px;
+    color: rgb(58, 55, 224);
+  }
+  h2 {
+    font-size: 3rem;
+    padding: 30px 0 0 30px;
+    color: rgb(30, 30, 30);
+  }
+  h3 {
+    font-size: 2rem;
+    padding: 40px 0;
+    color: rgb(47, 47, 47);
+  }
+  .bigger-icon {
+    padding: 20px;
+    width: 100px;
+    height: 100px;
+  }
+  .form {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+  }
+  .post-container {
+    background-color: rgb(228, 228, 228);
+    height: 300px;
+  }
+  .submit-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0px;
+  }
+  .actions-mobile {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 100px 0px;
+  }
+  .actions {}
+  .action {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 50px 50px;
+  }
+  .select {
+    padding: 20px 30px;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-radius: 0;
+    width: 50%;
+    font-size: 2rem;
+    display: block;
+    background-color: white;
+  }
+  .bigger-select {
+    width: 100%;
+    height: 80px;
+  }
+  .text_area {
+    flex-direction: column;
+    resize: auto;
+    cursor: text;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-color: rgb(214, 214, 214);
+    padding: 20px;
+    width: 100%;
+    font-size: 2rem;
+    height: auto;
+  }
+  .text_area:focus {
+    border-color: rgb(58, 55, 224);
+  }
+  .submit {
+    display: block;
+    margin: 0 auto;
+    padding: 30px;
+    width: 250px;
+    font-size: 2rem;
+    background-color: rgb(58, 55, 224);
+    border: 0;
+    border-radius: 2px;
+    color: #fff;
+
+  }
+  .submit:hover {
+    background-color: rgb(28, 24, 213);
+  }
+  .submit:hover {
+    cursor: pointer;
+  }
+  .form label {
+    font-size: 4rem;
+  }
+  .field {
+    padding: 20px;
+  }
+  .field-input {
+    padding: 25px;
+    padding-left: 28px;
+    background-color: #f2f1f0;
+  }
+  .alert {
+    width: 85%;
+    height: 70px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 30px;
+    color: white;
+    line-height: 2.5rem;
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+  .close {
+    font-weight: bold;
+    color: white;
+    padding-left: 50px;
+    width: 80px;
+    height: 80px;
+  }
 }

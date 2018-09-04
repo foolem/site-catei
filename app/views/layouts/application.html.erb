@@ -12,22 +12,25 @@
   <body>
     <div id="container-full" class="container-full">
       <% flash.each do |key, value| %>
-        <div id="alert" class="alert alert-<%= key %>"> <span> <%= value %> </span> <i id="close" data-feather="x" class="close"></i> </div>
+        <div id="alert" class="alert alert-<%= key %> animated slideInDown"> <span> <%= value %> </span> <i id="close" data-feather="x" class="close"></i> </div>
       <% end %>
       <div class="logo-satads">
-        <%= image_tag("satads_logo_escrito.png", class: "logo-satads-img") %>
+        <%= image_tag("satads_logo_escrito.png", class: "logo-satads-img animated fast slideInDown") %>
       </div>
-      <div class="container-content">
+      <div class="container-content box-shadow">
+        <div class="animated fadeIn">
 
-        <%= yield %>
+          <%= yield %>
+        </div>
       </div>
     </div>
-    <script>
-      feather.replace()
-    </script>
+    <div class="post-container">
+    </div>
     <script type="text/javascript">
+      feather.replace()
       document.getElementById("close").addEventListener("click", function(){
-          document.getElementById("container-full").removeChild(document.getElementById("alert"));
+          document.getElementById("alert").classList.add("animated", "slideOutUp", "fast");
+          document.getElementById("container-full").getElementById("alert").removeChild();
       });
     </script>
   </body>

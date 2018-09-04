@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180902193324) do
     t.string "name"
     t.string "speaker"
     t.integer "vacancies"
+    t.integer "time_load"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

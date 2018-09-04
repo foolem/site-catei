@@ -27,6 +27,8 @@ gem 'awesome_print'
 gem 'devise_token_auth'
 # Cross requests
 gem 'rack-cors', :require => 'rack/cors'
+# Mailgun
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

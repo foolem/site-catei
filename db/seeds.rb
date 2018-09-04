@@ -8,5 +8,5 @@ speakers = ["André João", "Carlos Emanuel", "Filepe Dahora", "Gugu Gaitero"]
   speaker = speakers.sample
   Lecture.create(name: lecture, speaker: speaker, turn: 'day')
   Lecture.create(name: lecture, speaker: speaker, turn: 'night')
-  Course.create(name: lectures.sample, speaker: speakers.sample, vacancies: 40)
+  Course.create(name: lectures.sample, speaker: speakers.sample, vacancies: 40, time_load: 120)
 end
