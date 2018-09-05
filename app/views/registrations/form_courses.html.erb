@@ -1,4 +1,7 @@
-<h1 class="text-center pb-50">Selecione o curso</h1>
+<div class="name-badge">
+  <span> <%= @participant.name %> </span>
+</div>
+<h1 class="text-center pb-50">Selecione o curso para inscrição</h1>
 
 <%= form_with(model: @participant, url: { action: "add_course_to_participant" }, method: 'post') do |form| %>
 <div class="form animated fadeIn">
@@ -12,7 +15,7 @@
 
   </div>
   <div class="actions submit-mobile p-0">
-    <%= form.submit "Enviar", class: "submit" %>
+    <%= form.submit "Inscrever-se", class: "submit" %>
   </div>
 </div>
 <% end %>
@@ -28,6 +31,7 @@
           course = JSON.parse(this.responseText);
           document.getElementById("course-info").innerHTML = `<div class='field'><label>Descrição</label><div class='field-input text_area animated fadeIn'>${course.name}</div></div>`;
           document.getElementById("course-info").innerHTML += `<div class='field'><label>Palestrante</label><div class='field-input text_area animated fadeIn'>${course.speaker}</div></div>`;
+          document.getElementById("course-info").innerHTML += `<div class='field'><label>Horário</label><div class='field-input text_area animated fadeIn'>${course.schedule}</div></div>`;
           document.getElementById("course-info").innerHTML += `<div class='field'><label>Carga horária</label><div class='field-input text_area animated fadeIn'>${course.time_load}</div></div>`;
           document.getElementById("course-info").innerHTML += `<div class='field'><label>Vagas</label><div class='field-input text_area animated fadeIn'>${course.vacancies}</div></div>`;
        }

@@ -1,7 +1,7 @@
 class Registration < ApplicationRecord
   has_and_belongs_to_many :courses
   has_and_belongs_to_many :lectures
-  enum turn: { day: false, night: true }
+  enum turn: { not_student: 0, day: 1, night: 2 }
 
   def check_in(type, object)
     self.total_minutes = 0 if self.total_minutes.blank?

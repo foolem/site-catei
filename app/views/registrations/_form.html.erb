@@ -12,18 +12,19 @@
   </div>
 
   <div class="field">
-    <label for="registration_grr">GRR</label>
-    <%= form.text_field :grr, id: :registration_grr, placeholder: 'GRRXXXXXXXX', class: 'text_area' %>
-  </div>
-
-  <div class="field">
     <label for="registration_cpf">CPF</label>
     <%= form.text_field :cpf, id: :registration_cpf, placeholder: 'XXX.XXX.XXX-XX', class: 'text_area' %>
   </div>
 
   <div class="field">
+    <label for="registration_grr">GRR</label>
+    <%= form.text_field :grr, id: :registration_grr, placeholder: 'GRRXXXXXXXX', class: 'text_area' %>
+  </div>
+
+
+  <div class="field">
     <label for="registration_turn">Turno</label>
-    <%= form.select :turn, options_for_select(turns, ""), {}, class: 'select' %>
+    <%= form.select :turn, options_for_select(turns, ""), {}, class: 'select medium-select' %>
   </div>
 
   <div class="actions submit-mobile p-0">
@@ -31,4 +32,7 @@
   </div>
 
 </div>
+<% end %>
+<%= link_to registrations_path do %>
+  <i data-feather="arrow-left" class="bigger-icon">Voltar</i>
 <% end %>

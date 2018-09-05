@@ -1,6 +1,6 @@
 module RegistrationsHelper
   def turns
-    {"Vespertino" => "day", "Noturno" => "night"}
+    {"Nenhum" => "not_student", "Vespertino" => "day", "Noturno" => "night"}
   end
 
   def courses_with_vacancies

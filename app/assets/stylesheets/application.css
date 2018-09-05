@@ -22,7 +22,7 @@ html, body, * {
 .container-full {
   width: 100%;
   max-height: 100%;
-  background: linear-gradient(-10deg, rgb(228, 228, 228) 0%,rgb(228, 228, 228) 45%, rgb(58, 55, 224) 45%, rgb(104, 22, 186) 100%);
+  background: linear-gradient(-10deg, rgb(228, 228, 228) 0%,rgb(228, 228, 228) 45%, #230865 45%, #7244e0 100%);
   padding-bottom: 200px;
 }
 .container-content {
@@ -64,6 +64,7 @@ html, body, * {
 }
 .select {
   padding: 5px 20px;
+  border: 1px solid #f2f2f2;
   border-left: 0;
   border-right: 0;
   border-top: 0;
@@ -72,6 +73,12 @@ html, body, * {
 }
 .bigger-select {
   width: 100%;
+  height: 50px;
+}
+.medium-select {
+  display: block;
+  background-color: white;
+  width: 200px;
   height: 50px;
 }
 .text_area {
@@ -89,20 +96,21 @@ html, body, * {
   height: auto;
 }
 .text_area:focus {
-  border-color: rgb(58, 55, 224);
+  border-color: #230865;
 }
 .submit {
   padding: 20px;
-  width: 200px;
+  width: auto;
+  min-width: 200px;
   font-size: 1.5rem;
-  background-color: rgb(58, 55, 224);
+  background-color: #230865;
   border: 0;
   border-radius: 2px;
   color: #fff;
   float: right;
 }
 .submit:hover {
-  background-color: rgb(28, 24, 213);
+  background-color: #361783;
 }
 .submit:hover {
   cursor: pointer;
@@ -123,6 +131,9 @@ html, body, * {
 }
 .pb-50 {
   padding-bottom: 50px;
+}
+.pb-20 {
+  padding-bottom: 20px;
 }
 .pb-100 {
   padding-bottom: 100px;
@@ -170,22 +181,25 @@ html, body, * {
   text-align: center;
 }
 .text-strong {
-  color: rgb(58, 55, 224);
+  color: #230865;
 }
 h1 {
   font-size: 4rem;
-  padding: 60px 0 0 40px;
-  color: rgb(58, 55, 224);
+  padding: 60px 0;
+  color: #230865;
+  font-weight: normal;
 }
 h2 {
   font-size: 2rem;
   padding: 20px 0 0 20px;
   color: rgb(30, 30, 30);
+  font-weight: normal;
 }
 h3 {
   font-size: 1rem;
   padding: 20px 0;
   color: rgb(47, 47, 47);
+  font-weight: normal;
 }
 a {
   text-decoration: none;
@@ -226,7 +240,7 @@ a:hover {
     left: 0;
     right: 100%;
     bottom: 0;
-    background: rgb(58, 55, 224);
+    background: #230865;
     height: 2px;
     -webkit-transition-property: right;
     transition-property: right;
@@ -242,15 +256,23 @@ a:hover {
     right: 0
 }
 svg {
-  color: rgb(58, 55, 224);
+  color: #230865;
 }
 svg:hover {
-  color: rgb(34, 32, 172);
+  color: #422096;
 }
 .bigger-icon {
   padding: 20px;
   width: 50px;
   height: 50px;
+}
+
+.name-badge {
+  padding: 20px;
+  background-color: #230865;
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -264,12 +286,13 @@ svg:hover {
   }
   h1 {
     font-size: 5rem;
-    padding: 60px 0 0 40px;
-    color: rgb(58, 55, 224);
+    padding: 60px 0px;
+    color: #230865;
+    font-weight: normal;
   }
   h2 {
     font-size: 3rem;
-    padding: 30px 0 0 30px;
+    padding: 30px 0px;
     color: rgb(30, 30, 30);
   }
   h3 {
@@ -341,15 +364,16 @@ svg:hover {
     height: auto;
   }
   .text_area:focus {
-    border-color: rgb(58, 55, 224);
+    border-color: #230865;
   }
   .submit {
     display: block;
     margin: 0 auto;
     padding: 30px;
-    width: 250px;
+    width: auto;
+    min-width: 200px;
     font-size: 2rem;
-    background-color: rgb(58, 55, 224);
+    background-color: #230865;
     border: 0;
     border-radius: 2px;
     color: #fff;

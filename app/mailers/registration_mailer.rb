@@ -12,4 +12,13 @@ class RegistrationMailer < ApplicationMailer
     @user = user
     mail to: @user.email, subject: "Confirmação de inscrição SATADS"
   end
+
+  def send_course_details(user, course)
+    attachments['logo.png'] = File.read("#{Rails.root}/app/assets/images/satads_logo_escrito.png")
+
+    @user = user
+    @course = course
+    
+    mail to: @user.email, subject: "Confirmação de inscrição em minicurso - SATADS"
+  end
 end

@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20180902193324) do
     t.string "speaker"
     t.integer "vacancies"
     t.integer "time_load"
+    t.string "schedule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,7 +49,8 @@ ActiveRecord::Schema.define(version: 20180902193324) do
     t.string "email"
     t.string "cpf"
     t.integer "total_minutes"
-    t.boolean "turn"
+    t.integer "turn"
+    t.string "hash_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

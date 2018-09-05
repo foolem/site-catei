@@ -1,17 +1,17 @@
 <div class="pb-50">
   <h1 class="text-center pb-100">Digite seu e-mail</h1>
 
-  <%= form_tag(controller: "registrations", action: "participant_search", method: "post", remote: true) do %>
-  <div class="form">
-    <div class="field">
-      <label for="registration_name">Email</label>
-      <%= text_field_tag :email, "", id: :registration_email, placeholder: 'Seu email', class: 'text_area' %>
-    </div>
+  <%= form_tag(controller: "registrations", action: "participant_search") do %>
+    <div class="form">
+      <div class="field">
+        <label for="registration_name">E-mail</label>
+        <%= text_field_tag :email, "", id: :registration_email, placeholder: 'Seu e-mail', class: 'text_area' %>
+      </div>
 
-    <div class="actions submit-mobile p-0">
-      <%= submit_tag "Enviar", class: "submit" %>
+      <div class="actions submit-mobile p-0">
+        <%= submit_tag "Buscar participante", class: "submit" %>
+      </div>
     </div>
-  </div>
   <% end %>
 </div>
 <%= link_to registrations_path do %>

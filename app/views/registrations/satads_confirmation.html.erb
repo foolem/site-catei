@@ -1,0 +1,12 @@
+<h1 class="text-center pb-50"> <%= @registration.name %> </h1>
+<div class="form text-center">
+  <h2 class="pb-20">Esse é seu QRCode.</h2>
+  <h2 class="pb-50">Utilize ele para fazer check-in nas palestras e cursos da SATADS.</h2>
+  <div class="pb-50">
+    <%= raw RQRCode::QRCode.new("#{@registration.id}").as_svg(module_size: 20) %>
+  </div>
+  <h3>O QRCode foi enviado para o email: <span class="text-strong"> <%= @registration.email %> </span> </h3>
+</div>
+<%= link_to registrations_path do %>
+  <i data-feather="arrow-left" class="bigger-icon"></i>
+<% end %>

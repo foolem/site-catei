@@ -1,15 +1,11 @@
 class RegistrationsController < ApplicationController
-  before_action :set_registration, only: [:show, :edit, :update, :destroy, :add_course_to_participant]
+  before_action :set_registration, only: [:add_course_to_participant]
+  before_action :set_registration_hash, only: [:satads_confirmation, :courses_confirmation]
 
   # GET /registrations
   # GET /registrations.json
   def index
     @registrations = Registration.all
-  end
-
-  # GET /registrations/1
-  # GET /registrations/1.json
-  def show
   end
 
   # GET /registrations/new
@@ -35,18 +31,20 @@ class RegistrationsController < ApplicationController
     end
     @registration = Registration.new(registration_params)
 
-    RegistrationMailer.send_qrcode(@registration).deliver
+    Thread.fork { RegistrationMailer.send_qrcode(@registration).deliver }
 
-    respond_to do |format|
-      if @registration.save
-        flash[:success] = "Cadastrado realizado com sucesso!"
-        format.html { redirect_to @registration }
-        format.json { render :show, status: :created, location: @registration }
-      else
-        format.html { render :new }
-        format.json { render json: @registration.errors, status: :unprocessable_entity }
-      end
-    end
+    @registration.save
+
+    hash = hashid.encode(@registration.id, 6, 6, 6)
+    @registration.hash_id = hash
+
+    @registration.save
+
+    flash[:success] = "Cadastrado realizado com sucesso!"
+    redirect_to "/inscricao_satads/#{@registration.hash_id}"
+  end
+
+  def satads_confirmation
   end
 
   def registration_courses
@@ -69,29 +67,53 @@ class RegistrationsController < ApplicationController
   end
 
   def add_course_to_participant
-    course = Course.find(params[:registration][:course])
-    if course.vacancies <= course.registrations.length
+    @course = Course.find(params[:registration][:course])
+    if @course.vacancies <= @course.registrations.length
       flash[:error] = "Desculpe, mas o curso não possui mais vagas."
       redirect_to registrations_path
       return
-    elsif @registration.courses.include?(course)
+    elsif @registration.courses.include?(@course)
       flash[:error] = "Você já está inscrito neste curso."
       redirect_to registrations_path
       return
-    else
-      @registration.courses << course
-      @registration.save
-      course.vacancies -= 1
-      course.save
-      flash[:success] = "Inscrito no curso com sucesso!"
-      redirect_to registrations_path
     end
+
+    @registration.courses << @course
+    if @registration.hash_id.blank?
+      hash = hashid.encode(@registration.id, 6, 6, 6)
+      @registration.hash_id = hash
+    end
+    @registration.save
+
+    @course.vacancies -= 1
+    @course.save
+
+    Thread.fork { RegistrationMailer.send_course_details(@registration, @course).deliver }
+
+    flash[:success] = "Inscrito no curso com sucesso!"
+    redirect_to "/inscricao_curso/#{@registration.hash_id}"
+  end
+
+  def courses_confirmation
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
       @registration = Registration.find(params[:id])
+    end
+
+    def set_registration_hash
+      if Registration.where(hash_id: params[:hash]).first.blank?
+        flash[:error] = "Não encontrado."
+        redirect_to registrations_path
+        return
+      end
+      @registration = Registration.find_by(hash_id: params[:hash])
+    end
+
+    def hashid
+      Hashids.new("semana academica tads 2018")
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

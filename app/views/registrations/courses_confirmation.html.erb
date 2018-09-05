@@ -1,0 +1,8 @@
+<h1 class="text-center pb-50"> <%= @registration.name %> </h1>
+<div class="form text-center">
+  <h2 class="pb-50">Inscrição realizada com sucesso no curso: <%= @registration.courses.last.name %></h2>
+  <h3>Os detalhes da inscrição foram enviados para o email: <span class="text-strong"> <%= @registration.email %> </span> </h3>
+</div>
+<%= link_to registrations_path do %>
+  <i data-feather="arrow-left" class="bigger-icon"></i>
+<% end %>
