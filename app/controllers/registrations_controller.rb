@@ -28,12 +28,16 @@ class RegistrationsController < ApplicationController
       flash[:error] = "O CPF é um campo obgrigatório"
       redirect_to new_registration_path
       return
+    elsif !(Registration.find_by(cpf: registration_params[:cpf]).blank?)
+      flash[:error] = "Participante já existente"
+      redirect_to new_registration_path
+      return
     end
     @registration = Registration.new(registration_params)
 
-    Thread.fork { RegistrationMailer.send_qrcode(@registration).deliver }
-
     @registration.save
+
+    Thread.fork { RegistrationMailer.send_qrcode(@registration).deliver }
 
     hash = hashid.encode(@registration.id, 6, 6, 6)
     @registration.hash_id = hash

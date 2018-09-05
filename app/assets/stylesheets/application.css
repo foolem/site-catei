@@ -79,7 +79,6 @@ html, body, * {
   display: block;
   background-color: white;
   width: 200px;
-  height: 50px;
 }
 .text_area {
   flex-direction: column;
@@ -380,7 +379,7 @@ svg:hover {
 
   }
   .submit:hover {
-    background-color: rgb(28, 24, 213);
+    background-color: #361783;
   }
   .submit:hover {
     cursor: pointer;
@@ -393,7 +392,7 @@ svg:hover {
   }
   .field-input {
     padding: 25px;
-    padding-left: 28px;
+    /* padding-left: 28px; */
     background-color: #f2f1f0;
   }
   .alert {
