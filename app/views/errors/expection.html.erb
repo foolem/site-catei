@@ -1,1 +1,33 @@
-<h1>eorRORooroo 500!!!</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>500 - SATADS2018</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://unpkg.com/feather-icons"></script>
+  </head>
+
+  <body>
+    <div id="container-full" class="container-full">
+      <div class="logo-satads">
+        <%= image_tag("satads_logo_escrito.png", class: "logo-satads-img animated fast slideInDown") %>
+      </div>
+      <div class="container-content box-shadow">
+        <div class="animated fadeIn">
+
+          <h1 class="text-center pb-80">500</h1>
+          <h2 class="text-center">Alguma coisa deu errado.</h2>
+
+        </div>
+        <%= link_to registrations_path do %>
+          <i data-feather="arrow-left" class="bigger-icon">Voltar</i>
+        <% end %>
+      </div>
+    </div>
+    <div class="post-container">
+    </div>
+    <script type="text/javascript">
+      feather.replace()
+    </script>
+  </body>
+</html>

@@ -45,15 +45,19 @@ html, body, * {
 
 .actions {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 100px 0px;
 }
 .action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   padding: 0 50px;
+}
+.divider {
+  width: 50%;
+  background-color: rgb(203, 203, 203);
+  height: 1px;
 }
 
 .form {
@@ -79,6 +83,7 @@ html, body, * {
   display: block;
   background-color: white;
   width: 200px;
+  padding: 10px;
 }
 .text_area {
   flex-direction: column;
@@ -131,6 +136,9 @@ html, body, * {
 .pb-50 {
   padding-bottom: 50px;
 }
+.pt-50 {
+  padding-top: 50px;
+}
 .pb-20 {
   padding-bottom: 20px;
 }
@@ -176,10 +184,16 @@ html, body, * {
   color: rgb(255, 255, 255);
 }
 /* Text rules */
+.text-justify {
+  text-align: justify;
+}
 .text-center {
   text-align: center;
 }
 .text-strong {
+  color: #230865;
+}
+.color-primary {
   color: #230865;
 }
 h1 {
@@ -187,6 +201,7 @@ h1 {
   padding: 60px 0;
   color: #230865;
   font-weight: normal;
+  word-wrap: break-word;
 }
 h2 {
   font-size: 2rem;
@@ -199,6 +214,14 @@ h3 {
   padding: 20px 0;
   color: rgb(47, 47, 47);
   font-weight: normal;
+}
+h4 {
+  font-size: .7rem;
+  color: rgb(47, 47, 47);
+  font-weight: normal;
+}
+small {
+  font-size: .8rem;
 }
 a {
   text-decoration: none;
@@ -319,19 +342,24 @@ svg:hover {
     justify-content: center;
     padding: 100px 0px;
   }
-  .actions-mobile {
+  .divider {
+    width: 70%;
+    background-color: rgb(203, 203, 203);
+    height: 1px;
+  }
+  /* .actions-mobile {
     display: block;
     margin: 0 auto;
     text-align: center;
     padding: 100px 0px;
-  }
-  .actions {}
+  } */
+  /* .actions {}
   .action {
     display: block;
     margin: 0 auto;
     text-align: center;
     padding: 50px 50px;
-  }
+  } */
   .select {
     padding: 20px 30px;
     border-left: 0;

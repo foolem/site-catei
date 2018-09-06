@@ -3,7 +3,7 @@ class RegistrationMailer < ApplicationMailer
   def send_qrcode(user)
     @greeting = "Sua inscrição na SATADS foi efetuada com sucesso!"
     @user = user
-    qr = RQRCode::QRCode.new( @user.id.to_s, :size => 4, :level => :h )
+    qr = RQRCode::QRCode.new( @user.hash_id, :size => 2, :level => :h )
     png = qr.to_img
     png.resize(500, 500).save("app/assets/images/qr.png")
 

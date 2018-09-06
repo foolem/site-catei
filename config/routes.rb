@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   post 'add_course_to_participant', to: 'registrations#add_course_to_participant'
   match 'inscricao_satads/:hash', to: 'registrations#satads_confirmation', via: 'get'
   match 'inscricao_curso/:hash', to: 'registrations#courses_confirmation', via: 'get'
+  match 'inscricao_cursos', to: 'registrations#registration_courses', via: 'get'
 end
