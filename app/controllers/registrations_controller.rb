@@ -37,10 +37,10 @@ class RegistrationsController < ApplicationController
 
     @registration.save
 
-    RegistrationMailer.send_qrcode(@registration).deliver
-
     hash = hashid.encode(@registration.id, 6, 6, 6)
     @registration.hash_id = hash
+
+    RegistrationMailer.send_qrcode(@registration).deliver
 
     @registration.save
 
