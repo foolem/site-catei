@@ -72,7 +72,7 @@ class RegistrationsController < ApplicationController
 
   def add_course_to_participant
     @course = Course.find(params[:registration][:course])
-    if @course.vacancies <= @course.registrations.length
+    if @course.vacancies > 0
       flash[:error] = "Desculpe, mas o curso não possui mais vagas."
       redirect_to registrations_path
       return
