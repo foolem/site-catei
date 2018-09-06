@@ -37,7 +37,7 @@ class RegistrationsController < ApplicationController
 
     @registration.save
 
-    Thread.fork { RegistrationMailer.send_qrcode(@registration).deliver }
+    RegistrationMailer.send_qrcode(@registration).deliver
 
     hash = hashid.encode(@registration.id, 6, 6, 6)
     @registration.hash_id = hash
@@ -92,7 +92,7 @@ class RegistrationsController < ApplicationController
     @course.vacancies -= 1
     @course.save
 
-    Thread.fork { RegistrationMailer.send_course_details(@registration, @course).deliver }
+    RegistrationMailer.send_course_details(@registration, @course).deliver
 
     flash[:success] = "Inscrito no curso com sucesso!"
     redirect_to "/inscricao_curso/#{@registration.hash_id}"

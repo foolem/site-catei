@@ -130,6 +130,9 @@ html, body, * {
   background-color: #f2f1f0;
 }
 .p-0 {
+  padding: 0;
+}
+.p-30 {
   padding: 30px;
 }
 .pb-50 {
