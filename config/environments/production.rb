@@ -99,7 +99,7 @@ Rails.application.configure do
     :port => 587,
     :authentication => :plain,
     :domain => 'satads.heroku.com',
-    :user_name => 'emaildocatei@gmail.com',
+    :user_name => 'satads2018@gmail.com',
     :password => 'integracao2018'
 }
 end

@@ -40,9 +40,9 @@ class RegistrationsController < ApplicationController
     hash = hashid.encode(@registration.id, 6, 6, 6)
     @registration.hash_id = hash
 
-    RegistrationMailer.send_qrcode(@registration).deliver
-
     @registration.save
+
+    Thread.fork { RegistrationMailer.send_qrcode(@registration).deliver }
 
     flash[:success] = "Cadastrado realizado com sucesso!"
     redirect_to "/inscricao_satads/#{@registration.hash_id}"
@@ -92,7 +92,7 @@ class RegistrationsController < ApplicationController
     @course.vacancies -= 1
     @course.save
 
-    RegistrationMailer.send_course_details(@registration, @course).deliver
+    Thread.fork { RegistrationMailer.send_course_details(@registration, @course).deliver }
 
     flash[:success] = "Inscrito no curso com sucesso!"
     redirect_to "/inscricao_curso/#{@registration.hash_id}"
