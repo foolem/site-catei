@@ -101,6 +101,18 @@ class RegistrationsController < ApplicationController
   def courses_confirmation
   end
 
+  def certificates
+    respond_to do |format|
+      format.pdf do
+        pdf = GeneralCertificate.new(Registration.first)
+        send_data pdf.render,
+        filename: "Certificado_teste.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registration

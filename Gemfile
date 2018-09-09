@@ -31,6 +31,9 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 # Hashids
 gem 'hashids'
+# Prawn
+gem 'prawn'
+gem 'prawn-table'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
