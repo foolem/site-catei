@@ -6,11 +6,16 @@ class Registration < ApplicationRecord
   def check_in(type, object)
     self.total_minutes = 0 if self.total_minutes.blank?
     if type == "lecture"
-      self.total_minutes += 60 if !self.lectures.include?(object) # cada palestra só pode ser assistida uma vez por turno
-      self.lectures << object if !self.lectures.include?(object) && self.save
+      lectures_counter = self.lectures.map { |lecture| lecture.id }.count(object.id)
+      if (lectures_counter < 2)
+        self.total_minutes += 50 if lectures_counter == 0 # cada palestra deve ter 2 checkins, entrada e saída
+        self.lectures << object
+        self.save
+      end
     else
-      self.total_minutes += 60 if (self.courses.map { |course| course.id }.count(object.id) < 4) # 4 porque temos um minicurso com 4 aulas
-      self.courses << object if (self.courses.map { |course| course.id }.count(object.id) < 4) && self.save
+      courses_counter = self.courses.map { |course| course.id }.count(object.id)
+      self.total_minutes += 50 if (courses_counter < 4) # 4 porque temos um minicurso com 4 aulas
+      self.courses << object if (courses_counter < 4) && self.save
     end
   end
 end

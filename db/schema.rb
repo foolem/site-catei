@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180902193324) do
+ActiveRecord::Schema.define(version: 20180908194407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20180902193324) do
     t.string "schedule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "day"
   end
 
   create_table "courses_registrations", id: false, force: :cascade do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180902193324) do
     t.boolean "turn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "day"
   end
 
   create_table "lectures_registrations", id: false, force: :cascade do |t|

@@ -14,8 +14,4 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def course_params
-      params.require(:course).permit(:name, :speaker, :vacancies, :duration)
-    end
 end
