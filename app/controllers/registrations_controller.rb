@@ -104,7 +104,7 @@ class RegistrationsController < ApplicationController
   def certificates
     respond_to do |format|
       format.pdf do
-        pdf = GeneralCertificate.new(Registration.first)
+        pdf = GeneralCertificate.new(Registration.last)
         send_data pdf.render,
         filename: "Certificado_teste.pdf",
         type: "application/pdf",
