@@ -20,8 +20,8 @@ Rails.application.routes.draw do
     resources :registrations, path: 'participantes', except: [:edit, :show, :update, :destroy] do
     end
   end
-  
-  get 'certificados', to: 'registrations#certificates'
+
+  #get 'certificados', to: 'registrations#certificates'
 
   get 'busca', to: 'registrations#registration_courses', as: 'registration_courses'
   post 'inscricao_cursos', to: 'registrations#participant_search'
