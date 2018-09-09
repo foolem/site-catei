@@ -3,9 +3,9 @@ module Api::V1
     before_action :set_lecture, only: [:show]
 
     def index
-      time = (Time.now) # heroku - 3 horas
+      time = (Time.now - 3.hours) # heroku - 3 horas
 
-      @lectures = Lecture.where(day: 12)
+      @lectures = Lecture.where(day: time.day)
 
       render json: @lectures, status: :ok
     end
