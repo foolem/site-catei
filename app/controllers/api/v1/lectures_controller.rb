@@ -5,7 +5,7 @@ module Api::V1
     def index
       time = (Time.now - 3.hours) # heroku - 3 horas
 
-      @lectures = Lecture.where(day: 11) # mudarrrrrrrrrrrrrr
+      @lectures = Lecture.where(day: 12) # mudarrrrrrrrrrrrrr
 
       render json: @lectures, status: :ok
     end
