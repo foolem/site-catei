@@ -11,42 +11,67 @@ class TeachersCertificate < Prawn::Document
       text "Dia #{d}", size: 20, align: :left
       i = 1
       lectures.where(day: d).each do |l|
-        if (i == 1)
-          text "14:30 - 15:20", size: 10, align: :left
-          move_down 10
-        end
-        if (i == 2)
-          text "15:20 - 16:10", size: 10, align: :left
-          move_down 10
-        end
-        if (i == 3)
-          text "16:30 - 17:20", size: 10, align: :left
-          move_down 10
-        end
-        if (i == 4)
-          text "17:20 - 18:10", size: 10, align: :left
-          move_down 10
-        end
-        if (i == 5)
-          text "19:00 - 19:50", size: 10, align: :left
-          move_down 10
-        end
-        if (i == 6)
-          text "19:50 - 20:40", size: 10, align: :left
-          move_down 10
-        end
-        if (i == 7)
-          text "20:40 - 21:00", size: 10, align: :left
-          move_down 10
-        end
-        if (i == 8)
-          text "21:00 - 21:45", size: 10, align: :left
-          move_down 10
+        if l.day != 14
+          if (i == 1)
+            move_down 10
+            text "14:30 - 15:20", size: 10, align: :left, style: :bold
+            move_down 10
+          end
+          if (i == 2)
+            move_down 10
+            text "15:20 - 16:10", size: 10, align: :left, style: :bold
+            move_down 10
+          end
+          if (i == 3)
+            move_down 10
+            text "16:30 - 17:20", size: 10, align: :left, style: :bold
+            move_down 10
+          end
+          if (i == 4)
+            move_down 10
+            text "17:20 - 18:10", size: 10, align: :left, style: :bold
+            move_down 10
+          end
+          if (i == 5)
+            move_down 10
+            text "19:00 - 19:50", size: 10, align: :left, style: :bold
+            move_down 10
+          end
+          if (i == 6)
+            move_down 10
+            text "19:50 - 20:40", size: 10, align: :left, style: :bold
+            move_down 10
+          end
+          if (i == 7)
+            move_down 10
+            text "20:40 - 21:00", size: 10, align: :left, style: :bold
+            move_down 10
+          end
+          if (i == 8)
+            move_down 10
+            text "21:00 - 21:45", size: 10, align: :left, style: :bold
+            move_down 10
+          end
+        else
+          i = 1
+          if (i == 1)
+            move_down 10
+            text "14:30 - 18:10", size: 10, align: :left, style: :bold
+            move_down 10
+          end
+          if (i == 2)
+            move_down 10
+            text "19:00 - 22:30", size: 10, align: :left, style: :bold
+            move_down 10
+          end
         end
 
-        l.registrations.uniq.sort_by { |r| r.name }.each do |r|
-          text "- #{r.name}", size: 10, align: :left
-          move_down 10
+        l.registrations.uniq.sort_by { |r| r.name }.each_with_index do |r, i|
+          text "- #{r.name}", size: 10, align: :left if i % 2 == 0
+          if i % 2 != 0
+            move_up 10
+            text "- #{r.name}", size: 10, align: :right
+          end
         end
 
         i += 1
