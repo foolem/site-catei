@@ -45,7 +45,7 @@ class TeachersCertificate < Prawn::Document
         end
 
         l.registrations.uniq.sort_by { |r| r.name }.each do |r|
-          text "- #{r.name}", size: 10, align: :left
+          text "- #{r.name.downcase.titleize}", size: 10, align: :left
           move_down 10
         end
 
