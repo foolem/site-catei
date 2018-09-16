@@ -66,8 +66,8 @@ class TeachersCertificate < Prawn::Document
           end
         end
         
-        l.registrations.uniq.map { |r| r.name.downcase.titleize }.sort_by { |r| r.name }.each_with_index do |r, j|
-          text "- #{r.name}", size: 10, align: :left
+        l.registrations.uniq.map { |r| r.name.downcase.titleize }.sort.each_with_index do |r, j|
+          text "- #{r}", size: 10, align: :left
         end
 
         i += 1
