@@ -67,7 +67,8 @@ class TeachersCertificate < Prawn::Document
         end
 
         l.registrations.uniq.sort_by { |r| r.name }.each_with_index do |r, j|
-          c = cursor if j == 0
+          puts "------------------------------------ #{cursor} -> #{j}"
+          c = cursor if j == 1
           text_box "- #{r.name.downcase.titleize}", size: 10, at: [10, cursor] if j < l.registrations.uniq.count/2
           if j >= l.registrations.uniq.count/2
             text_box "- #{r.name.downcase.titleize}", size: 10, at: [300, c]
