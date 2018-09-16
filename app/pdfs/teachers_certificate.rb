@@ -66,9 +66,9 @@ class TeachersCertificate < Prawn::Document
           end
         end
 
-        l.registrations.uniq.sort_by { |r| r.name }.each do |r|
-          text "- #{r.name.downcase.titleize}", size: 10, align: :left if i % 2 == 0
-          if i % 2 != 0
+        l.registrations.uniq.sort_by { |r| r.name }.each_with_index do |r, j|
+          text "- #{r.name.downcase.titleize}", size: 10, align: :left if j % 2 == 0
+          if j % 2 != 0
             move_up 10
             text "- #{r.name.downcase.titleize}", size: 10, align: :right
           end
