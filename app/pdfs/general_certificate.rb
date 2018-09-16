@@ -8,12 +8,12 @@ class GeneralCertificate < Prawn::Document
   def generate(participant)
     image "#{Rails.root}/app/assets/images/b1.png", at: [-40, 560], width: 850, height: 595
 
-      move_down 30
+      move_down 40
       text "CERTIFICADO DE PARTICIPAÇÃO", size: 40, align: :center
-      move_down 50
+      move_down 40
       text "Certifico que", size: 20, align: :center
       move_down 10
-      text "Filipe Fenrich Niespodzinski", size: 25, style: :bold, align: :center
+      text "#{participant.name}", size: 25, style: :bold, align: :center
       move_down 50
       text "Participou do evento", size: 20, align: :center
       move_down 20

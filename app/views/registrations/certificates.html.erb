@@ -1,0 +1,17 @@
+<div class="name-badge">
+  <span> <%= @registration.name %> </span>
+</div>
+<h1 class="center text-center"> Seus certificados </h1>
+<div class="actions actions-mobile">
+  <div class="action pb-50">
+    <%= link_to "SATADS2018", "/certificados/#{@registration.hash_id}/satads2018.pdf", class: "hvr-underline-from-left" %>
+  </div>
+  <% @registration.courses.uniq.each do |c| %>
+    <div class="divider">
+    </div>
+    <% course_hash = Hashids.new("semana academica tads 2018").encode(c.id, 6, 6, 6) %>
+    <div class="action pt-50 pb-50">
+      <%= link_to "#{c.name}", "/certificados/#{@registration.hash_id}/curso/#{course_hash}.pdf", class: "hvr-underline-from-left" %>
+    </div>
+  <% end %>
+</div>

@@ -21,7 +21,13 @@ Rails.application.routes.draw do
     end
   end
 
-  #get 'certificados', to: 'registrations#certificates'
+  get 'certificados/busca', to: 'registrations#certificates_search', as: 'certificates_search'
+  match 'certificados/:hash', to: 'registrations#certificates', via: 'get'
+  post 'certificados', to: 'registrations#participant_certificates_search'
+  match 'certificados/:hash/satads2018', to: 'registrations#satads_certificate', via: 'get'
+  match 'certificados/:hash/curso/:course_hash', to: 'registrations#course_certificate', via: 'get'
+
+  match 'relatorio_professores', to: 'registrations#teachers_report', via: 'get'
 
   get 'busca', to: 'registrations#registration_courses', as: 'registration_courses'
   post 'inscricao_cursos', to: 'registrations#participant_search'

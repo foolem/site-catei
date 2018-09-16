@@ -1,6 +1,7 @@
 class RegistrationsController < ApplicationController
   before_action :set_registration, only: [:add_course_to_participant]
-  before_action :set_registration_hash, only: [:satads_confirmation, :courses_confirmation]
+  before_action :set_registration_hash, only: [:satads_confirmation, :courses_confirmation, :certificates, :satads_certificate, :course_certificate]
+  before_action :set_course_hash, only: [:course_certificate]
 
   # GET /registrations
   # GET /registrations.json
@@ -62,8 +63,13 @@ class RegistrationsController < ApplicationController
     end
     @participant = Registration.where(email: params[:email]).first
     if !@participant.blank?
-      render 'form_courses', participant: @participant
-      return
+      if params[:certificates] == 'true'
+        render 'certificates', participant: @participant
+        return
+      else
+        render 'form_courses', participant: @participant
+        return
+      end
     else
       flash[:error] = "Participante não encontrado! Você já se cadastrou na Semana Acadêmica?"
       redirect_to registration_courses_path
@@ -101,12 +107,60 @@ class RegistrationsController < ApplicationController
   def courses_confirmation
   end
 
+  def participant_certificates_search
+    if params[:email].blank?
+      flash[:error] = "Email não pode estar em branco!"
+      redirect_to certificates_search_path
+      return
+    end
+    @participant = Registration.where(email: params[:email]).first
+    if !@participant.blank?
+      redirect_to "/certificados/#{@participant.hash_id}"
+      return
+    else
+      flash[:error] = "Participante não encontrado!"
+      redirect_to registrations_path
+    end
+  end
+
   def certificates
+    puts "-------------------------- #{@registration.name}"
+  end
+
+  def certificates_search
+
+  end
+
+  def satads_certificate
     respond_to do |format|
       format.pdf do
-        pdf = GeneralCertificate.new(Registration.last)
+        pdf = GeneralCertificate.new(@registration)
         send_data pdf.render,
-        filename: "Certificado_teste.pdf",
+        filename: "Certificado_satads2018.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
+    end
+  end
+
+  def course_certificate
+    respond_to do |format|
+      format.pdf do
+        pdf = CourseCertificate.new(@registration, @course)
+        send_data pdf.render,
+        filename: "Certificado_curso_#{@course.name.split(" ").first.split("/").first}.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
+    end
+  end
+
+  def teachers_report
+    respond_to do |format|
+      format.pdf do
+        pdf = TeachersCertificate.new(Lecture.all, Course.all)
+        send_data pdf.render,
+        filename: "Certificado_professores.pdf",
         type: "application/pdf",
         disposition: "inline"
       end
@@ -126,6 +180,15 @@ class RegistrationsController < ApplicationController
         return
       end
       @registration = Registration.find_by(hash_id: params[:hash])
+    end
+
+    def set_course_hash
+      if Course.where(id: hashid.decode(params[:course_hash]).first).first.blank?
+        flash[:error] = "Não encontrado."
+        redirect_to certificates_path
+        return
+      end
+      @course = Course.find(hashid.decode(params[:course_hash]).first)
     end
 
     def hashid
