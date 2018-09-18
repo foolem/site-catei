@@ -28,6 +28,8 @@ class GeneralCertificate < Prawn::Document
       move_down 30
 
       stroke_line [260, cursor], [520, cursor]
+      move_down 10
+      text "Coordenador do curso", size: 15, align: :center
   end
 
 end
