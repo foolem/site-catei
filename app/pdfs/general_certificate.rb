@@ -13,7 +13,7 @@ class GeneralCertificate < Prawn::Document
       move_down 40
       text "Certifico que", size: 20, align: :center
       move_down 10
-      text "#{participant.name}", size: 25, style: :bold, align: :center
+      text "#{participant.name.downcase.titleize}", size: 25, style: :bold, align: :center
       move_down 50
       text "Participou do evento", size: 20, align: :center
       move_down 20
