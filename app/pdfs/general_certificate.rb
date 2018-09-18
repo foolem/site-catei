@@ -1,7 +1,7 @@
 class GeneralCertificate < Prawn::Document
 
   def initialize(participant)
-    super(:page_size => "A4", :page_layout => :landscape)
+    super(:page_size => "A4", :page_layout => :landscape, :compress => true)
     generate(participant)
   end
 
