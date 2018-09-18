@@ -53,11 +53,11 @@ class TeachersCertificate < Prawn::Document
             move_down 10
           end
         else
-          if (i != 99)
+          if (j != 1)
             move_down 10
             text "14:30 - 18:10", size: 10, align: :left, style: :bold
             move_down 10
-            i = 99
+            j = 1
           else
             move_down 10
             text "19:00 - 22:30", size: 10, align: :left, style: :bold
