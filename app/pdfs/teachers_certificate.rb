@@ -53,11 +53,12 @@ class TeachersCertificate < Prawn::Document
             move_down 10
           end
         else
-          i = 1
+          i = 1 if i != 2
           if (i == 1)
             move_down 10
             text "14:30 - 18:10", size: 10, align: :left, style: :bold
             move_down 10
+            i += 1
           end
           if (i == 2)
             move_down 10
@@ -65,7 +66,7 @@ class TeachersCertificate < Prawn::Document
             move_down 10
           end
         end
-        
+
         l.registrations.uniq.map { |r| r.name.downcase.titleize }.sort.each_with_index do |r, j|
           text "- #{r}", size: 10, align: :left
         end
