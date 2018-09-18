@@ -2,6 +2,7 @@ class TeachersCertificate < Prawn::Document
 
   def initialize(lectures, courses)
     super(:page_size => "A4", :page_layout => :portrait)
+    @first_seen = false
     generate(lectures, courses)
   end
 
@@ -53,11 +54,11 @@ class TeachersCertificate < Prawn::Document
             move_down 10
           end
         else
-          if (j != 1)
+          if (@first_seen == false)
+            @first_seen = true
             move_down 10
             text "14:30 - 18:10", size: 10, align: :left, style: :bold
             move_down 10
-            j = 1
           else
             move_down 10
             text "19:00 - 22:30", size: 10, align: :left, style: :bold
