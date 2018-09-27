@@ -33,7 +33,7 @@ class TeachersCertificate < Prawn::Document
     end
 
     registrations.sort_by { |r| r.name }.each do |r|
-      text "- #{s.name.titleize} - #{s.grr.upcase}", size: 10, align: :left
+      text "- #{r.name.titleize} - #{r.grr.upcase}", size: 10, align: :left
     end
 
     stroke_line [0, cursor], [520, cursor]
@@ -71,7 +71,7 @@ class TeachersCertificate < Prawn::Document
     end
 
     registrations.sort_by { |r| r.name }.each do |r|
-      text "- #{s.name.titleize} - #{s.grr.upcase}", size: 10, align: :left
+      text "- #{r.name.titleize} - #{r.grr.upcase}", size: 10, align: :left
     end
 
     stroke_line [0, cursor], [520, cursor]
@@ -104,7 +104,7 @@ class TeachersCertificate < Prawn::Document
     end
 
     registrations.sort_by { |r| r.name }.each do |r|
-      text "- #{s.name.titleize} - #{s.grr.upcase}", size: 10, align: :left
+      text "- #{r.name.titleize} - #{r.grr.upcase}", size: 10, align: :left
     end
 
     stroke_line [0, cursor], [520, cursor]
@@ -138,7 +138,7 @@ class TeachersCertificate < Prawn::Document
     end
 
     registrations.sort_by { |r| r.name }.each do |r|
-      text "- #{s.name.titleize} - #{s.grr.upcase}", size: 10, align: :left
+      text "- #{r.name.titleize} - #{r.grr.upcase}", size: 10, align: :left
     end
 
     stroke_line [0, cursor], [520, cursor]
@@ -170,7 +170,7 @@ class TeachersCertificate < Prawn::Document
     end
 
     registrations.sort_by { |r| r.name }.each do |r|
-      text "- #{s.name.titleize} - #{s.grr.upcase}", size: 10, align: :left
+      text "- #{r.name.titleize} - #{r.grr.upcase}", size: 10, align: :left
     end
 
     stroke_line [0, cursor], [520, cursor]
