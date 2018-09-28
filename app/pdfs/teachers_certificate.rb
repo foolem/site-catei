@@ -78,7 +78,7 @@ class TeachersCertificate < Prawn::Document
 
         l.registrations.uniq.map { |r| [r.name.downcase.titleize, r.grr.upcase] }.sort.each_with_index do |r, j|
           if r[1] != ''
-            text "- #{r[0]} - #{(r[1].upcase != '' and r[1].upcase[0] != 'G') ? r[1].upcase.prepend('GRR') : r[1].upcase} - #{@info}", size: 10, align: :left
+            text "Matrícula: #{(r[1].upcase != '' and r[1].upcase[0] != 'G') ? r[1].upcase.prepend('GRR') : r[1].upcase} - Nome: #{r[0]} - #{@info}", size: 10, align: :left
           end
         end
 
