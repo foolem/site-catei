@@ -138,7 +138,7 @@ class TeachersCertificate < Prawn::Document
     end
 
     registrations.sort_by { |r| r.name }.each do |r|
-      text "Matrícula: #{(r.grr.upcase != '' and r.grr.upcase[0] != 'G') ? a.prepend('GRR') : ''} - Nome: #{r.name.titleize} - 13/09 - 16:30 - 18:10", size: 10, align: :left
+      text "Matrícula: #{(r.grr.upcase != '' and r.grr.upcase[0] != 'G') ? r.grr.upcase.prepend('GRR') : ''} - Nome: #{r.name.titleize} - 13/09 - 16:30 - 18:10", size: 10, align: :left
     end
 
     stroke_line [0, cursor], [520, cursor]
