@@ -7,185 +7,87 @@ class TeachersCertificate < Prawn::Document
   end
 
   def generate(lectures, courses)
-    text "Dia 10", size: 20, align: :left
+    days = [10, 11, 12, 13, 14]
+    days.each do |d|
+      text "Dia #{d}", size: 20, align: :left
+      i = 1
+      lectures.where(day: d).each do |l|
+        if l.day != 14
+          if (i == 1)
+            move_down 10
+            text "14:30 - 15:20", size: 10, align: :left, style: :bold
+            move_down 10
+            @info = "#{d}/09 - 14:30 - 15:20"
+          end
+          if (i == 2)
+            move_down 10
+            text "15:20 - 16:10", size: 10, align: :left, style: :bold
+            move_down 10
+            @info = "#{d}/09 - 15:20 - 16:10"
+          end
+          if (i == 3)
+            move_down 10
+            text "16:30 - 17:20", size: 10, align: :left, style: :bold
+            move_down 10
+            @info = "#{d}/09 - 16:30 - 17:20"
+          end
+          if (i == 4)
+            move_down 10
+            text "17:20 - 18:10", size: 10, align: :left, style: :bold
+            move_down 10
+            @info = "#{d}/09 - 17:20 - 18:10"
+          end
+          if (i == 5)
+            move_down 10
+            text "19:00 - 19:50", size: 10, align: :left, style: :bold
+            move_down 10
+            @info = "#{d}/09 - 19:00 - 19:50"
+          end
+          if (i == 6)
+            move_down 10
+            text "19:50 - 20:40", size: 10, align: :left, style: :bold
+            move_down 10
+            @info = "#{d}/09 - 19:50 - 20:40"
+          end
+          if (i == 7)
+            move_down 10
+            text "20:40 - 21:00", size: 10, align: :left, style: :bold
+            move_down 10
+            @info = "#{d}/09 - 20:40 - 21:00"
+          end
+          if (i == 8)
+            move_down 10
+            text "21:00 - 21:45", size: 10, align: :left, style: :bold
+            move_down 10
+            @info = "#{d}/09 - 21:00 - 21:45"
+          end
+        else
+          if (@first_seen == false)
+            @first_seen = true
+            move_down 10
+            text "14:30 - 18:10", size: 10, align: :left, style: :bold
+            move_down 10
+            @info = "#{d}/09 - 14:30 - 18:10"
+          else
+            move_down 10
+            text "19:00 - 22:30", size: 10, align: :left, style: :bold
+            move_down 10
+            @info = "#{d}/09 - 19:00 - 22:30"
+          end
+        end
 
-    # Curso de web - Segunda
-    move_down 10
-    text "19:00 - 21:45", size: 10, align: :left, style: :bold
-    move_down 10
+        l.registrations.uniq.map { |r| [r.name.downcase.titleize, r.grr.upcase] }.sort.each_with_index do |r, j|
+          if r[1] != ''
+            text "- #{r[0]} - #{(r[1].upcase != '' and r[1].upcase[0] != 'G') ? r[1].upcase.prepend('GRR') : r[1].upcase}", size: 10, align: :left
+          end
+        end
 
-    students_at_lectures_ids = []
-    [17,18,19].each do |n|
-      students_at_lectures_ids.push Lecture.find(n).registrations.pluck(:id)
-    end
-    students_at_lectures_ids = students_at_lectures_ids.flatten.uniq
+        i += 1
 
-    studentes_at_courses_ids = []
-    studentes_at_courses_ids.push Course.first.registrations.pluck(:id)
-    studentes_at_courses_ids = studentes_at_courses_ids.flatten.uniq
-
-    actual = []
-    actual = studentes_at_courses_ids.reject { |s| students_at_lectures_ids.include?(s) }
-
-    registrations = []
-    actual.each do |a|
-      registrations.push Registration.find(a)
-    end
-
-    registrations.sort_by { |r| r.name }.each do |r|
-      if r.grr != ''
-        text "Matrícula: #{(r.grr.upcase != '' and r.grr.upcase[0] != 'G') ? r.grr.upcase.prepend('GRR') : r.grr.upcase} - Nome: #{r.name.titleize} - 10/09 - 19:00 - 21:45", size: 10, align: :left
       end
+      stroke_line [0, cursor], [520, cursor]
+      move_down 10
     end
-
-    stroke_line [0, cursor], [520, cursor]
-    move_down 10
-    # -------------------------------------------------------
-    text "Dia 11/09", size: 20, align: :left
-
-    # Curso de Flutter - Terça
-    move_down 10
-    text "19:00 - 21:40", size: 10, align: :left, style: :bold
-    move_down 10
-
-    students_at_lectures_ids = []
-    [26,27,28].each do |n|
-      students_at_lectures_ids.push Lecture.find(n).registrations.pluck(:id)
-    end
-    students_at_lectures_ids = students_at_lectures_ids.flatten.uniq
-
-    studentes_at_courses_ids = []
-    studentes_at_courses_ids.push Course.first.registrations.pluck(:id)
-    studentes_at_courses_ids = studentes_at_courses_ids.flatten.uniq
-
-    actual = []
-    actual = studentes_at_courses_ids.reject { |s| students_at_lectures_ids.include?(s) }
-
-    studentes_at_courses_ids = []
-    studentes_at_courses_ids.push Course.find(5).registrations.pluck(:id)
-    studentes_at_courses_ids = studentes_at_courses_ids.flatten.uniq
-
-    actual.push studentes_at_courses_ids.reject { |s| students_at_lectures_ids.include?(s) }
-
-    registrations = []
-    actual.flatten.uniq.each do |a|
-      registrations.push Registration.find(a)
-    end
-
-    registrations.sort_by { |r| r.name }.each do |r|
-      if r.grr != ''
-        text "Matrícula: #{(r.grr.upcase != '' and r.grr.upcase[0] != 'G') ? r.grr.upcase.prepend('GRR') : r.grr.upcase} - Nome: #{r.name.titleize} - 11/09 - 19:00 - 21:40", size: 10, align: :left
-      end
-    end
-
-    stroke_line [0, cursor], [520, cursor]
-    move_down 10
-
-    # -------------------------------------------------------
-    text "Dia 12/09", size: 20, align: :left
-
-    # Curso de Elixir - Quarta
-    move_down 10
-    text "19:00 - 19:50", size: 10, align: :left, style: :bold
-    move_down 10
-
-    students_at_lectures_ids = []
-
-    students_at_lectures_ids.push Lecture.find(33).registrations.pluck(:id)
-
-    students_at_lectures_ids = students_at_lectures_ids.flatten.uniq
-
-    studentes_at_courses_ids = []
-    studentes_at_courses_ids.push Course.find(2).registrations.pluck(:id)
-    studentes_at_courses_ids = studentes_at_courses_ids.flatten.uniq
-
-    actual = []
-    actual = studentes_at_courses_ids.reject { |s| students_at_lectures_ids.include?(s) }
-    registrations = []
-
-    actual.each do |a|
-      registrations.push Registration.find(a)
-    end
-
-    registrations.sort_by { |r| r.name }.each do |r|
-      if r.grr != ''
-        text "Matrícula: #{(r.grr.upcase != '' and r.grr.upcase[0] != 'G') ? r.grr.upcase.prepend('GRR') : r.grr.upcase} - Nome: #{r.name.titleize} - 12/09 - 19:00 - 19:50", size: 10, align: :left
-      end
-    end
-
-    stroke_line [0, cursor], [520, cursor]
-    move_down 10
-
-    # -------------------------------------------------------
-    text "Dia 13/09", size: 20, align: :left
-
-    # Curso de Coach - Quinta
-    move_down 10
-    text "16:30 - 18:10", size: 10, align: :left, style: :bold
-    move_down 10
-
-    students_at_lectures_ids = []
-
-    [39, 40].each do |n|
-      students_at_lectures_ids.push Lecture.find(n).registrations.pluck(:id)
-    end
-    students_at_lectures_ids = students_at_lectures_ids.flatten.uniq
-
-    studentes_at_courses_ids = []
-    studentes_at_courses_ids.push Course.find(4).registrations.pluck(:id)
-    studentes_at_courses_ids = studentes_at_courses_ids.flatten.uniq
-
-    actual = []
-    actual = studentes_at_courses_ids.reject { |s| students_at_lectures_ids.include?(s) }
-    registrations = []
-
-    actual.each do |a|
-      registrations.push Registration.find(a)
-    end
-
-    registrations.sort_by { |r| r.name }.each do |r|
-      if r.grr != ''
-        text "Matrícula: #{(r.grr.upcase != '' and r.grr.upcase[0] != 'G') ? r.grr.upcase.prepend('GRR') : r.grr.upcase} - Nome: #{r.name.titleize} - 13/09 - 16:30 - 18:10", size: 10, align: :left
-      end
-    end
-
-    stroke_line [0, cursor], [520, cursor]
-    move_down 10
-
-
-    # Curso de GIT - Quinta
-    move_down 10
-    text "19:00 - 21:40", size: 10, align: :left, style: :bold
-    move_down 10
-
-    students_at_lectures_ids = []
-
-    [41, 42, 43].each do |n|
-      students_at_lectures_ids.push Lecture.find(n).registrations.pluck(:id)
-    end
-    students_at_lectures_ids = students_at_lectures_ids.flatten.uniq
-
-    studentes_at_courses_ids = []
-    studentes_at_courses_ids.push Course.find(3).registrations.pluck(:id)
-    studentes_at_courses_ids = studentes_at_courses_ids.flatten.uniq
-
-    actual = []
-    actual = studentes_at_courses_ids.reject { |s| students_at_lectures_ids.include?(s) }
-    registrations = []
-
-    actual.each do |a|
-      registrations.push Registration.find(a)
-    end
-
-    registrations.sort_by { |r| r.name }.each do |r|
-      if r.grr != ''
-        text "Matrícula: #{(r.grr.upcase != '' and r.grr.upcase[0] != 'G') ? r.grr.upcase.prepend('GRR') : r.grr.upcase} - Nome: #{r.name.titleize} - 13/09 - 19:00 - 21:40", size: 10, align: :left
-      end
-    end
-
-    stroke_line [0, cursor], [520, cursor]
-    move_down 10
-
   end
 
 end
