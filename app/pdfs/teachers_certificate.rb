@@ -33,7 +33,7 @@ class TeachersCertificate < Prawn::Document
     end
 
     registrations.sort_by { |r| r.name }.each do |r|
-      text "Matrícula: #{r.grr.upcase} - Nome: #{r.name.titleize} - 10/09 - 19:00 - 21:45", size: 10, align: :left
+      text "Matrícula: #{(r.grr.upcase != '' and r.grr.upcase[0] != 'G') ? r.grr.upcase.prepend('GRR') : ''} - Nome: #{r.name.titleize} - 10/09 - 19:00 - 21:45", size: 10, align: :left
     end
 
     stroke_line [0, cursor], [520, cursor]
@@ -71,7 +71,7 @@ class TeachersCertificate < Prawn::Document
     end
 
     registrations.sort_by { |r| r.name }.each do |r|
-      text "Matrícula: #{r.grr.upcase} - Nome: #{r.name.titleize} - 11/09 - 19:00 - 21:40", size: 10, align: :left
+      text "Matrícula: #{(r.grr.upcase != '' and r.grr.upcase[0] != 'G') ? r.grr.upcase.prepend('GRR') : ''} - Nome: #{r.name.titleize} - 11/09 - 19:00 - 21:40", size: 10, align: :left
     end
 
     stroke_line [0, cursor], [520, cursor]
@@ -104,7 +104,7 @@ class TeachersCertificate < Prawn::Document
     end
 
     registrations.sort_by { |r| r.name }.each do |r|
-      text "Matrícula: #{r.grr.upcase} - Nome: #{r.name.titleize} - 12/09 - 19:00 - 19:50", size: 10, align: :left
+      text "Matrícula: #{(r.grr.upcase != '' and r.grr.upcase[0] != 'G') ? r.grr.upcase.prepend('GRR') : ''} - Nome: #{r.name.titleize} - 12/09 - 19:00 - 19:50", size: 10, align: :left
     end
 
     stroke_line [0, cursor], [520, cursor]
@@ -170,7 +170,7 @@ class TeachersCertificate < Prawn::Document
     end
 
     registrations.sort_by { |r| r.name }.each do |r|
-      text "Matrícula: #{r.grr.upcase} - Nome: #{r.name.titleize} - 13/09 - 19:00 - 21:40", size: 10, align: :left
+      text "Matrícula: #{(r.grr.upcase != '' and r.grr.upcase[0] != 'G') ? r.grr.upcase.prepend('GRR') : ''} - Nome: #{r.name.titleize} - 13/09 - 19:00 - 21:40", size: 10, align: :left
     end
 
     stroke_line [0, cursor], [520, cursor]
