@@ -134,7 +134,7 @@ class RegistrationsController < ApplicationController
   def satads_certificate
     respond_to do |format|
       format.pdf do
-        pdf = GeneralCertificate.new(@registration)
+        pdf = GeneralCertificate.new
         send_data pdf.render,
         filename: "Certificado_satads2018.pdf",
         type: "application/pdf",
