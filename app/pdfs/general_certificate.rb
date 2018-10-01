@@ -25,7 +25,7 @@ class GeneralCertificate < Prawn::Document
         move_down 5
         text "Semana Acadêmica de Tecnologia em Análise e Desenvolvimento de Sistemas", size: 15, align: :center
         move_down 15
-        text "de 10 a 14 de setembro de 2018, com carga horária de #{participant.total_minutes/60} horas", size: 20, align: :center
+        text "de 10 a 14 de setembro de 2018, com carga horária de #{participant.total_minutes == 50 ? 1 : participant.total_minutes/60} horas", size: 20, align: :center
         move_down 50
         image "#{Rails.root}/app/assets/images/catei.png", at: [60, cursor], width: 150, height: 50
         image "#{Rails.root}/app/assets/images/ufpr.png", at: [560, cursor+8], width: 150, height: 60
