@@ -50,7 +50,9 @@ class GeneralCertificate < Prawn::Document
           text "Certifico que", size: 20, align: :center
           move_down 10
           text "#{participant.name.downcase.titleize}", size: 25, style: :bold, align: :center
-          move_down 50
+          move_down 10
+          text "#{participant.cpf}", size: 15, style: :bold, align: :center
+          move_down 40
           text "Participou do curso", size: 20, align: :center
           move_down 20
           if course.id == 5
