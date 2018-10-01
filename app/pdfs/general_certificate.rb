@@ -7,7 +7,7 @@ class GeneralCertificate < Prawn::Document
 
   def generate
     Registration.all.each_with_index do |participant, i|
-      if participant.total_minutes.present? and participant.total_minutes != 0
+      if !participant.total_minutes.blank? && participant.total_minutes > 0
         image "#{Rails.root}/app/assets/images/b1.png", at: [-40, 560], width: 850, height: 595
 
         move_down 40
