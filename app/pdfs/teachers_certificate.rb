@@ -17,49 +17,49 @@ class TeachersCertificate < Prawn::Document
             # move_down 10
             # text "14:30 - 15:20", size: 10, align: :left, style: :bold
             # move_down 10
-            @info = "#{d}/09 - 14:30 - 15:20"
+            @info = "#{d}/09\t14:30 - 15:20"
           end
           if (i == 2)
             # move_down 10
             # text "15:20 - 16:10", size: 10, align: :left, style: :bold
             # move_down 10
-            @info = "#{d}/09 - 15:20 - 16:10"
+            @info = "#{d}/09\t15:20 - 16:10"
           end
           if (i == 3)
             # move_down 10
             # text "16:30 - 17:20", size: 10, align: :left, style: :bold
             # move_down 10
-            @info = "#{d}/09 - 16:30 - 17:20"
+            @info = "#{d}/09\t16:30 - 17:20"
           end
           if (i == 4)
             # move_down 10
             # text "17:20 - 18:10", size: 10, align: :left, style: :bold
             # move_down 10
-            @info = "#{d}/09 - 17:20 - 18:10"
+            @info = "#{d}/09\t17:20 - 18:10"
           end
           if (i == 5)
             # move_down 10
             # text "19:00 - 19:50", size: 10, align: :left, style: :bold
             # move_down 10
-            @info = "#{d}/09 - 19:00 - 19:50"
+            @info = "#{d}/09\t19:00 - 19:50"
           end
           if (i == 6)
             # move_down 10
             # text "19:50 - 20:40", size: 10, align: :left, style: :bold
             # move_down 10
-            @info = "#{d}/09 - 19:50 - 20:40"
+            @info = "#{d}/09\t19:50 - 20:40"
           end
           if (i == 7)
             # move_down 10
             # text "20:40 - 21:00", size: 10, align: :left, style: :bold
             # move_down 10
-            @info = "#{d}/09 - 20:40 - 21:00"
+            @info = "#{d}/09\t20:40 - 21:00"
           end
           if (i == 8)
             # move_down 10
             # text "21:00 - 21:45", size: 10, align: :left, style: :bold
             # move_down 10
-            @info = "#{d}/09 - 21:00 - 21:45"
+            @info = "#{d}/09\t21:00 - 21:45"
           end
         else
           if (@first_seen == false)
@@ -67,12 +67,12 @@ class TeachersCertificate < Prawn::Document
             # move_down 10
             # text "14:30 - 18:10", size: 10, align: :left, style: :bold
             # move_down 10
-            @info = "#{d}/09 - 14:30 - 18:10"
+            @info = "#{d}/09\t 14:30 - 18:10"
           else
             # move_down 10
             # text "19:00 - 22:30", size: 10, align: :left, style: :bold
             # move_down 10
-            @info = "#{d}/09 - 19:00 - 22:30"
+            @info = "#{d}/09\t19:00 - 22:30"
           end
         end
 
