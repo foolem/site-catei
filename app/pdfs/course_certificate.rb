@@ -2,7 +2,7 @@ class CourseCertificate < Prawn::Document
 
   def initialize
     super(:page_size => "A4", :page_layout => :landscape)
-    generate(participant, course)
+    generate
   end
 
   def generate
