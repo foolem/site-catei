@@ -41,7 +41,7 @@ class GeneralCertificate < Prawn::Document
 
     registrations.each_with_index do |participant, i|
       if participant.courses.length > 0
-        participant.courses.each do |course|
+        participant.courses.to_a.uniq.each do |course|
           image "#{Rails.root}/app/assets/images/b1.png", at: [-40, 560], width: 850, height: 595
 
           move_down 40
