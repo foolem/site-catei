@@ -146,7 +146,7 @@ class RegistrationsController < ApplicationController
   def course_certificate
     respond_to do |format|
       format.pdf do
-        pdf = CourseCertificate.new(@registration, @course)
+        pdf = CourseCertificate.new
         send_data pdf.render,
         filename: "Certificado_curso_#{@course.name.split(" ").first.split("/").first}.pdf",
         type: "application/pdf",
