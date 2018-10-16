@@ -124,7 +124,6 @@ class RegistrationsController < ApplicationController
   end
 
   def certificates
-    puts "-------------------------- #{@registration.name}"
   end
 
   def certificates_search
@@ -134,7 +133,7 @@ class RegistrationsController < ApplicationController
   def satads_certificate
     respond_to do |format|
       format.pdf do
-        pdf = GeneralCertificate.new
+        pdf = GeneralCertificate.new(@registration)
         send_data pdf.render,
         filename: "Certificado_satads2018.pdf",
         type: "application/pdf",
@@ -146,7 +145,7 @@ class RegistrationsController < ApplicationController
   def course_certificate
     respond_to do |format|
       format.pdf do
-        pdf = CourseCertificate.new
+        pdf = CourseCertificate.new(@registration, @course)
         send_data pdf.render,
         filename: "Certificado_curso_#{@course.name.split(" ").first.split("/").first}.pdf",
         type: "application/pdf",
